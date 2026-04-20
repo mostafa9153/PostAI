@@ -11,6 +11,7 @@ import Settings from './components/Settings';
 import AdminPanel from './components/AdminPanel';
 import AuthPage from './components/AuthPage';
 import OnboardingPage from './components/OnboardingPage';
+import { configDebug } from './lib/supabase';
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -100,7 +101,11 @@ export default function App() {
         <div style={{ maxWidth: 400 }}>
           <div style={{ fontSize: 48, marginBottom: 20 }}>🚧</div>
           <h2 style={{ color: C.gold, marginBottom: 12 }}>Configuration Missing</h2>
-          <p style={{ color: C.t1, lineHeight: 1.6 }}>Supabase API keys are missing in your environment. Please add <strong>VITE_SUPABASE_URL</strong> and <strong>VITE_SUPABASE_ANON_KEY</strong> to your Vercel settings.</p>
+          <p style={{ color: C.t1, lineHeight: 1.6, marginBottom: 20 }}>Supabase API keys are missing in your environment. Please add <strong>VITE_SUPABASE_URL</strong> and <strong>VITE_SUPABASE_ANON_KEY</strong> to your Vercel settings.</p>
+          <div style={{ background: "rgba(255,255,255,0.05)", padding: 12, borderRadius: 8, fontSize: 12, color: C.t2, fontFamily: "monospace" }}>
+            Status: URL: {configDebug.url ? "✅ FOUND" : "❌ MISSING"} | KEY: {configDebug.key ? "✅ FOUND" : "❌ MISSING"}
+          </div>
+          <button onClick={() => window.location.reload()} style={{ marginTop: 20, color: C.gold, fontSize: 13, textDecoration: "underline" }}>Refresh Page</button>
         </div>
       </div>
     );

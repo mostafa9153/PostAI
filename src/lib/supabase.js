@@ -13,11 +13,13 @@ let client = null;
 if (supabaseUrl && supabaseAnonKey) {
   try {
     client = createClient(supabaseUrl, supabaseAnonKey);
+    console.log("Supabase initialized successfully.");
   } catch (err) {
     console.error("Failed to initialize Supabase client:", err);
   }
 } else {
-  console.error("Supabase environment variables are missing or incomplete.");
+  console.warn("DEBUG INFO: URL present:", !!supabaseUrl, "| Key present:", !!supabaseAnonKey);
 }
 
 export const supabase = client;
+export const configDebug = { url: !!supabaseUrl, key: !!supabaseAnonKey };
