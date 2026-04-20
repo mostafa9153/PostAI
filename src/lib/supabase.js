@@ -1,8 +1,12 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Robust loading of environment variables
-const rawUrl = import.meta.env.VITE_SUPABASE_URL;
-const rawKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+// Robust loading of environment variables with fallbacks
+const getEnv = (name) => {
+  return import.meta.env[name] || (typeof process !== 'undefined' ? process.env[name] : null);
+};
+
+const rawUrl = getEnv('VITE_SUPABASE_URL');
+const rawKey = getEnv('VITE_SUPABASE_ANON_KEY');
 
 // Clean quotes if they were accidentally pasted into Vercel
 const supabaseUrl = rawUrl?.replace(/^["'](.+)["']$/, '$1')?.trim();
