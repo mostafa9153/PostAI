@@ -1,1 +1,242 @@
-/* Empty index.css as PostAI manages its own global styles */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background: rgba(201,168,76, 0.3);
+  color: #fff;
+}
+
+body {
+  background: #060606;
+  background-image: radial-gradient(circle at 50% 50%, rgba(20, 20, 20, 1) 0%, rgba(6, 6, 6, 1) 100%);
+  color: #EDE5CC;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: 0.02;
+  pointer-events: none;
+  background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+  z-index: 9999;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #060606;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#060606, #C9A84C, #060606);
+  border-radius: 10px;
+}
+
+.floating-group {
+  position: relative;
+  margin-top: 20px;
+}
+
+.floating-group input,
+.floating-group textarea {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 16px 16px 8px !important;
+}
+
+.floating-group label {
+  position: absolute;
+  left: 16px;
+  top: 14px;
+  color: #5C4830;
+  transition: all 0.2s;
+  pointer-events: none;
+  font-size: 15px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.floating-group input:focus~label,
+.floating-group input:not(:placeholder-shown)~label,
+.floating-group textarea:focus~label,
+.floating-group textarea:not(:placeholder-shown)~label {
+  top: 6px;
+  font-size: 11px;
+  color: #C9A84C;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+input,
+textarea,
+select {
+  all: unset;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  background: #111;
+  color: #EDE5CC;
+  border: 1px solid rgba(255, 255, 255, .07);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  transition: all .3s cubic-bezier(.4, 0, .2, 1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: rgba(201, 168, 76, .5);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 15px rgba(201, 168, 76, .12);
+  background: #141414;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: transparent;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+select option {
+  background: #1b1b1b;
+}
+
+textarea {
+  resize: vertical;
+  line-height: 1.75;
+}
+
+button {
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  background: none;
+  border: none;
+  color: #EDE5CC;
+  transition: all .2s cubic-bezier(.4, 0, .2, 1);
+}
+
+button:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+a {
+  color: #C9A84C;
+  text-decoration: none;
+  transition: color .2s;
+}
+
+a:hover {
+  color: #DFC26A;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.glass {
+  background: rgba(18, 18, 18, 0.7) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg, #9A7520, #C9A84C, #DFC26A, #9A7520);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+.fade-in {
+  animation: fadeIn 0.8s cubic-bezier(.4, 0, .2, 1) forwards;
+}
+
+.slide-in {
+  animation: slideIn 0.5s cubic-bezier(.4, 0, .2, 1) forwards;
+}
+
+.glow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #C9A84C;
+  box-shadow: 0 0 10px #C9A84C, 0 0 20px rgba(201, 168, 76, 0.6);
+}
