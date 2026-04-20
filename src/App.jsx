@@ -107,10 +107,9 @@ export default function App() {
 
       <main style={{ 
         marginLeft: collapsed ? 56 : 228, 
-        padding: "2rem 4rem", 
+        padding: "2rem 3rem", 
         transition: "margin-left .3s cubic-bezier(.4,0,.2,1)",
-        maxWidth: 1200,
-        marginInline: "auto"
+        minHeight: "100vh"
       }}>
         {page === "dashboard" && (
           <Dashboard 
