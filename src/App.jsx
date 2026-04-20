@@ -57,6 +57,10 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    if (!supabase) {
+      setLoading(false);
+      return;
+    }
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
         if (activeSessionRef.current !== session.user.id) {
@@ -66,6 +70,7 @@ export default function App() {
       } else setLoading(false);
     });
 
+    if (!supabase) return;
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_OUT' || (!session && event !== 'INITIAL_SESSION')) {
         activeSessionRef.current = null;
@@ -85,6 +90,18 @@ export default function App() {
     return (
       <div style={{ minHeight: "100vh", background: C.bg0, display: "flex", alignItems: "center", justifyContent: "center" }}>
         <div className="gold-shimmer" style={{ width: 40, height: 40, borderRadius: "50%", opacity: 0.5 }} />
+      </div>
+    );
+  }
+
+  if (!supabase) {
+    return (
+      <div style={{ minHeight: "100vh", background: C.bg0, display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem", textAlign: "center" }}>
+        <div style={{ maxWidth: 400 }}>
+          <div style={{ fontSize: 48, marginBottom: 20 }}>🚧</div>
+          <h2 style={{ color: C.gold, marginBottom: 12 }}>Configuration Missing</h2>
+          <p style={{ color: C.t1, lineHeight: 1.6 }}>Supabase API keys are missing in your environment. Please add <strong>VITE_SUPABASE_URL</strong> and <strong>VITE_SUPABASE_ANON_KEY</strong> to your Vercel settings.</p>
+        </div>
       </div>
     );
   }
